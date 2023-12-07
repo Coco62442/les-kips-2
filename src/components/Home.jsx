@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from './header'
+import Header from './Header'
 
-function About() {
+function Home() {
   return (
     <>
     <Header />
@@ -10,3 +10,5 @@ function About() {
     
   )
 }
+
+export default Home
