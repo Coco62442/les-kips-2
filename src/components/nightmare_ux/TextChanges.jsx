@@ -5,7 +5,7 @@ const TextChanges = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const texts = ['Text 1', 'Text 2', 'Text 3']; // Add more texts as needed
+      const texts = ['save the pandas!', 'Coding is fun!', 'Stay curious!', 'Explore new horizons!']; // Additional phrases
       const randomIndex = Math.floor(Math.random() * texts.length);
       setText(texts[randomIndex]);
     }, 3000); // Change text every 3 seconds (adjust the interval as needed)

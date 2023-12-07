@@ -7,54 +7,44 @@ import {
   DialogTitle,
   Typography,
   IconButton,
-  makeStyles,
+  Box,
 } from '@mui/material';
-
-const useStyles = makeStyles((theme) => ({
-  popup: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing(2),
-    textAlign: 'center',
-  },
-  footerText: {
-    color: 'gray',
-    cursor: 'pointer',
-    marginTop: theme.spacing(2),
-  },
-}));
+import OpenInFullIcon from '@mui/icons-material/ExpandMore';
+import CloseFullscreenIcon from '@mui/icons-material/ExpandLess';
 
 const FalsePopup = () => {
-  const classes = useStyles();
+  const initialTimer = { minutes: 1, seconds: 26 }; // Initial timer value
+
   const [open, setOpen] = useState(false);
-  const [timer, setTimer] = useState({ minutes: 1, seconds: 26 });
+  const [timer, setTimer] = useState(initialTimer);
   const [expanded, setExpanded] = useState(false);
+  const [showStopper, setShowStopper] = useState(true);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setOpen(true);
+    }, 5000); // Show popup automatically after 5 seconds
+
+    return () => clearTimeout(timerId);
+  }, []);
 
   useEffect(() => {
     let interval;
     if (open) {
       interval = setInterval(() => {
-        if (timer.seconds === 0) {
-          if (timer.minutes === 0) {
-            clearInterval(interval);
-          } else {
-            setTimer({ minutes: timer.minutes - 1, seconds: 59 });
+        setTimer((prevTimer) => {
+          const newSeconds = prevTimer.seconds + 1;
+          if (newSeconds === 60) {
+            return { minutes: prevTimer.minutes + 1, seconds: 0 };
           }
-        } else {
-          setTimer({ ...timer, seconds: timer.seconds - 1 });
-        }
+          return { ...prevTimer, seconds: newSeconds };
+        });
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [open, timer]);
+  }, [open]);
 
   const handleToggle = () => {
-    setOpen(!open);
-  };
-
-  const handleExpand = () => {
     setExpanded(!expanded);
   };
 
@@ -62,46 +52,65 @@ const FalsePopup = () => {
     setOpen(false);
   };
 
+  const handleStopperClick = () => {
+    setShowStopper(false);
+  };
+
+  const handleRelancerClick = () => {
+    setShowStopper(true);
+  };
+
   return (
-    <div>
-      <IconButton onClick={handleToggle} color="primary">
+    <Dialog open={open} onClose={() => {}} maxWidth={false} fullScreen={expanded}>
+      <IconButton onClick={handleToggle} color="primary" style={{ position: 'absolute', top: 8, right: 8 }}>
         {expanded ? (
-          <span>Unexpand</span>
+          <CloseFullscreenIcon onClick={handleToggle} />
         ) : (
-          <span>Expand</span>
+          <OpenInFullIcon onClick={handleToggle} />
         )}
       </IconButton>
-      <Dialog open={open} onClose={handleClose} maxWidth={false}>
-        <DialogTitle>
+      <DialogContent
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '16px',
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant="h4" style={{ marginBottom: '16px' }}>
           Dépêche toi, le temps s'écoule !
-        </DialogTitle>
-        <DialogContent className={classes.popup}>
-          <Typography variant="h4">
-            {`${timer.minutes.toString().padStart(2, '0')}:${timer.seconds.toString().padStart(2, '0')}`}
-          </Typography>
-          <Button variant="contained" color="success">
+        </Typography>
+        <Typography variant="h4">
+          {`${timer.minutes.toString().padStart(2, '0')}:${timer.seconds.toString().padStart(2, '0')}`}
+        </Typography>
+        {showStopper ? (
+          <Button variant="contained" color="success" onClick={handleStopperClick}>
             Stopper
           </Button>
-          <Button variant="contained" color="error">
+        ) : (
+          <Button variant="contained" color="error" onClick={handleRelancerClick}>
             Relancer
           </Button>
-          {expanded && (
-            <Typography
-              variant="caption"
-              className={classes.footerText}
-              onClick={handleClose}
-            >
-              ©lose 2023
-            </Typography>
-          )}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+        )}
+        {expanded && (
+          <Typography
+            variant="caption"
+            style={{
+              color: 'gray',
+              cursor: 'pointer',
+              position: 'absolute',
+              bottom: '8px',
+              left: '8px',
+            }}
+            onClick={handleClose}
+          >
+            ©lose 2023
+          </Typography>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 
