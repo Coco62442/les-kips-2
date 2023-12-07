@@ -4,11 +4,9 @@ import Header from './header'
 function About() {
   return (
     <>
-      <Header />
-      <div>About Page</div>
+    <Header />
+      <div>Ma toute nouvelle page Home </div>
     </>
     
   )
 }
-
-export default About
