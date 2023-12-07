@@ -5,7 +5,6 @@ import { createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router-dom'
 import ErrorPage from './components/Error-page'
 import About from './components/About'
-import Tetris from './components/Tetris/Tetris'
 
 const router = createBrowserRouter([
   {
