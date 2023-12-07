@@ -12,11 +12,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <About />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: '/tetris',
-    element: <Tetris />,
-    errorElement: <ErrorPage />,
   }
 ])
 
