@@ -15,7 +15,7 @@ function App() {
         } else if (compteur === 1) {
             window.location.href = '/about?secret=2'
         } else if (compteur === 2) {
-            alert('Vous avez trouvé le code secret une troisième fois !');
+            window.location.href = '/popup'
         } else {
             window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
         }
