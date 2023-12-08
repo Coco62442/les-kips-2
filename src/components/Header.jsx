@@ -59,7 +59,7 @@ function ResponsiveAppBar() {
       if (page === 'Home') {
         return '/';
       } else if (page === 'Quiz') {
-        return '/mcq';
+        return '/quiz';
       } else if (page === 'About') {
         return '/about';
       } else if (page === 'Nightmarish UX') {
