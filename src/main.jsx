@@ -10,7 +10,7 @@ import './assets/font/Playful Christmas-Personal Use.otf'
 import './assets/font/PWHappyChristmas.ttf'
 import './assets/font/Sweet Vusstain.ttf'
 
-window.localStorage.setItem('compteur', 0);
+// window.localStorage.setItem('compteur', 0);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
