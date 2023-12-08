@@ -2,16 +2,12 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import { Outlet } from 'react-router-dom';
 
-const pages = ['Home', 'Quiz', 'Ressources'];
+const pages = ['Home', 'Quiz', 'Ressources', 'About', 'Nightmarish UX'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -23,9 +19,23 @@ function ResponsiveAppBar() {
     const handleCloseNavMenu = () => {
       setAnchorElNav(null);
     };
+
+    const redirect = (page) => {
+      if (page === 'Home') {
+        return '/';
+      } else if (page === 'Quiz') {
+        return '/quiz';
+      } else if (page === 'About') {
+        return '/about';
+      } else if (page === 'Nightmarish UX') {
+        return '/ux';
+      } else {
+        return '/error';
+      }
+    }
     
     return (
-      
+      <>
         <AppBar position="static" sx={{ backgroundColor: '#2ecc71' }}>
           <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'center' }}>
             <Toolbar disableGutters>
@@ -50,44 +60,6 @@ function ResponsiveAppBar() {
               >
                 🎄 LOGO 🌍
               </Typography>
-    
-              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                  }}
-                >
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center" component="a" href="/" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: 'red' } }}>
-                        {page}
-                      </Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
     
               <Typography
                 variant="h5"
@@ -115,7 +87,7 @@ function ResponsiveAppBar() {
                   <Button
                     key={page}
                     component="a"
-                    href="/"
+                    href={redirect(page)}
                     onClick={handleCloseNavMenu}
                     sx={{ mx: 2, color: 'white', '&:hover': { color: 'red' } }}
                   >
@@ -126,6 +98,8 @@ function ResponsiveAppBar() {
             </Toolbar>
           </Container>
         </AppBar>
+        <Outlet />
+      </>
       );
     
   }

@@ -13,8 +13,6 @@ function Home() {
 
   return (
     <>
-      <ResponsiveAppBar />
-
       <p>        timer: {elapsedTime} secondes</p>
       <Timer>
            <Container maxWidth="xl" sx={{ mt: 4 }}>

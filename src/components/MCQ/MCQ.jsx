@@ -15,7 +15,7 @@ function shuffle(array) {
   return shuffledArray;
 }
 
-export default function App() {
+export default function MCQ() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [questionText, setQuestionText] = useState("");
