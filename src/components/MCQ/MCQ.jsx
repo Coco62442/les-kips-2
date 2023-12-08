@@ -3,8 +3,10 @@ import questions from "./questions";
 import { Box, Typography, Button, } from '@mui/material';
 import Snowfall from 'react-snowfall'
 import panneau from './../../assets/image/panneau.png'
+//import './indexMCQ.css'
 
 import { useTranslation } from 'react-i18next';
+
 
 function shuffle(array) {
   const shuffledArray = [...array];
@@ -15,7 +17,7 @@ function shuffle(array) {
   return shuffledArray;
 }
 
-export default function MCQ() {
+export default function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [questionText, setQuestionText] = useState("");
