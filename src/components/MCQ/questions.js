@@ -15,8 +15,8 @@ const questions = [
     {
         question: i18n.t('MCQ_Question2_Question'),
         choices: [
-            { text: i18n.t('MCQ_Question2_Reponse1'), answer: false },
-            { text: i18n.t('MCQ_Question2_Reponse2'), answer: true },
+            { text: i18n.t('MCQ_Question2_Reponse1'), answer: true },
+            { text: i18n.t('MCQ_Question2_Reponse2'), answer: false },
             { text: i18n.t('MCQ_Question2_Reponse3'), answer: false },
             { text: i18n.t('MCQ_Question2_Reponse4'), answer: false },
         ],
@@ -26,8 +26,8 @@ const questions = [
         question: i18n.t('MCQ_Question3_Question'),
         choices: [
             { text: i18n.t('MCQ_Question3_Reponse1'), answer: false },
-            { text: i18n.t('MCQ_Question3_Reponse2'), answer: true },
-            { text: i18n.t('MCQ_Question3_Reponse3'), answer: false },
+            { text: i18n.t('MCQ_Question3_Reponse2'), answer: false },
+            { text: i18n.t('MCQ_Question3_Reponse3'), answer: true },
             { text: i18n.t('MCQ_Question3_Reponse4'), answer: false },
         ],
         explanation: i18n.t('MCQ_Question3_Explication'),
@@ -46,8 +46,8 @@ const questions = [
         question: i18n.t('MCQ_Question5_Question'),
         choices: [
             { text: i18n.t('MCQ_Question5_Reponse1'), answer: false },
-            { text: i18n.t('MCQ_Question5_Reponse2'), answer: true },
-            { text: i18n.t('MCQ_Question5_Reponse3'), answer: false },
+            { text: i18n.t('MCQ_Question5_Reponse2'), answer: false },
+            { text: i18n.t('MCQ_Question5_Reponse3'), answer: true },
             { text: i18n.t('MCQ_Question5_Reponse4'), answer: false },
         ],
         explanation: i18n.t('MCQ_Question5_Explication'),
@@ -75,8 +75,8 @@ const questions = [
     {
         question: i18n.t('MCQ_Question8_Question'),
         choices: [
-            { text: i18n.t('MCQ_Question8_Reponse1'), answer: false },
-            { text: i18n.t('MCQ_Question8_Reponse2'), answer: true },
+            { text: i18n.t('MCQ_Question8_Reponse1'), answer: true },
+            { text: i18n.t('MCQ_Question8_Reponse2'), answer: false },
             { text: i18n.t('MCQ_Question8_Reponse3'), answer: false },
             { text: i18n.t('MCQ_Question8_Reponse4'), answer: false },
         ],
