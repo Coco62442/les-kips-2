@@ -6,7 +6,9 @@ import { Container, Typography, Grid, Box, Card, CardMedia } from '@mui/material
 import Section from './Section';
 import { useTimer } from './Timer';
 import Timer from './Timer';
-import ImageAppearOnHover from './Charlie';
+import ImageAppearOnHover from './charlie/Charlie';
+import BottomRightAlert from './charlie/BottomRightAlert';
+import Tree from './charlie/Tree';
 
 function Home() {
 
@@ -146,6 +148,18 @@ function Home() {
         {showImage && (
           <ImageAppearOnHover />
         )}
+
+        {/* Condition pour afficher l'alerte après 300 secondes */}
+        {elapsedTime > 20 && (
+          <BottomRightAlert />
+        )}
+
+        {elapsedTime > 120 && (
+          <BottomRightAlert />
+        )}
+
+        <Tree />
+
 
       <Footer />
     </>
