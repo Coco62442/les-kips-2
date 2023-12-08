@@ -1,19 +1,30 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import Footer from './Footer'
 import ResponsiveAppBar from './Header'
-import { Container, Typography, Grid } from '@mui/material';
+import { Container, Typography, Grid, Box, Card, CardMedia } from '@mui/material';
 import Section from './Section';
 import { useTimer } from './Timer';
 import Timer from './Timer';
+import ImageAppearOnHover from './charlie/Charlie';
+import BottomRightAlert from './charlie/BottomRightAlert';
+import Tree from './charlie/Tree';
 
 function Home() {
 
   const {elapsedTime} = useTimer();
+  const [showImage, setShowImage] = React.useState(false);
+  const [isMouseOver, setIsMouseOver] = React.useState(false);
+
+  useEffect(() => {
+    if (elapsedTime > 30) {
+      setShowImage(true);
+    }
+  }, [elapsedTime]);
 
   return (
     <>
-      <p>        timer: {elapsedTime} secondes</p>
+
       <Timer>
            <Container maxWidth="xl" sx={{ mt: 4 }}>
             <Section title="Noël Écologique">
@@ -129,10 +140,27 @@ function Home() {
               <Typography paragraph textAlign="justify">
             Minimisez les déchets en choisissant des produits avec un emballage minimal. Privilégiez les produits durables et réutilisables. Recyclez correctement et encouragez votre communauté à faire de même.
               </Typography>
-
             </Section>
           </Container>   
-          </Timer>   
+          </Timer>
+
+        {/* Condition pour afficher l'image après 270 secondes */}
+        {showImage && (
+          <ImageAppearOnHover />
+        )}
+
+        {/* Condition pour afficher l'alerte après 300 secondes */}
+        {elapsedTime > 20 && (
+          <BottomRightAlert />
+        )}
+
+        {elapsedTime > 120 && (
+          <BottomRightAlert />
+        )}
+
+        <Tree />
+
+
       <Footer />
     </>
     
