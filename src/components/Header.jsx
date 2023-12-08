@@ -7,7 +7,42 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { Outlet } from 'react-router-dom';
 
+import i18n from '../assets/translation';
+
 const pages = ['Home', 'Quiz', 'Ressources', 'About', 'Nightmarish UX'];
+
+const supportedLanguages = [
+  { code: 'fr', name: 'Français' },
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Spanish' },
+  { code: 'it', name: 'Italiano' },
+  { code: 'de', name: 'Deutch' },
+  { code: 'zh', name: '普通话' },
+  { code: 'renne', name: 'Renne' },
+];
+
+const LanguageSelector = () => {
+  const changeLanguage = (event) => {
+    //const selectedLanguage = event.target.value;
+    //i18n.changeLanguage(selectedLanguage);
+    i18n.locale = event.target.value;
+    //i18n.changeLanguage(event.target.value)
+    console.log(i18n.locale)
+    // Force le rafraîchissement de la page
+    location.reload();
+
+  };
+
+  return (
+    <select onChange={changeLanguage} value={i18n.locale}>
+      {supportedLanguages.map((lang) => (
+        <option key={lang.code} value={lang.code}>
+          {lang.name}
+        </option>
+      ))}
+    </select>
+  );
+};
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -95,6 +130,7 @@ function ResponsiveAppBar() {
                   </Button>
                 ))}
               </Box>
+              {/*<LanguageSelector />*/}
             </Toolbar>
           </Container>
         </AppBar>

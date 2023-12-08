@@ -18,7 +18,7 @@ function Router() {
                 <Route index element={<Home />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/ux' element={<NightmarishPage />} />
-                <Route path='/mcq' element={<MCQ />} />
+                <Route path='/quiz' element={<MCQ />} />
             </Route>
         </Routes>
     </BrowserRouter>

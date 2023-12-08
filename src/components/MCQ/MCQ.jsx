@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import questions from "./questions";
 import { Box, Typography, Button, } from '@mui/material';
-import Snowfall from 'react-snowfall'
-import panneau from './../../assets/image/panneau.png'
-//import './indexMCQ.css'
+import Snowfall from 'react-snowfall';
+import panneau from './../../assets/image/panneau.png';
 
-import { useTranslation } from 'react-i18next';
-
+import i18n from "../../assets/translation";
 
 function shuffle(array) {
   const shuffledArray = [...array];
@@ -17,7 +15,7 @@ function shuffle(array) {
   return shuffledArray;
 }
 
-export default function App() {
+export default function MCQ() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [questionText, setQuestionText] = useState("");
@@ -25,10 +23,8 @@ export default function App() {
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showNextButton, setShowNextButton] = useState(false);
-  const [feedback, setFeedback] = useState(""); // Ajout de l'état pour le feedback
-  const [explanation, setExplanation] = useState(""); // Ajout de l'état pour l'explication
-
-  const { t } = useTranslation();
+  const [feedback, setFeedback] = useState("");
+  const [explanation, setExplanation] = useState("");
 
   const startQuiz = () => {
     setCurrentQuestionIndex(0);
@@ -56,12 +52,11 @@ export default function App() {
   const selectChoice = (isCorrect, index) => {
     if (isCorrect) {
       setScore(score + 1);
-      setFeedback("Correct !"); // Ajout du feedback pour une réponse correcte
+      setFeedback("Correct !");
       } else {
-      setFeedback("Incorrect..."); // Ajout du feedback pour une réponse incorrecte
-      setExplanation("Explication pour une réponse incorrecte ici."); // Définir une explication générique pour une réponse incorrecte
+      setFeedback("Incorrect...");
     }
-    setExplanation(questions[currentQuestionIndex].explanation); // Définir l'explication pour une réponse correcte
+    setExplanation(questions[currentQuestionIndex].explanation);
     
     setSelectedAnswer(index);
     setShowNextButton(true);
@@ -69,14 +64,13 @@ export default function App() {
 
   const handleNextButton = () => {
     setShowNextButton(false);
-    setFeedback(""); // Réinitialiser le feedback à chaque nouvelle question
-    setExplanation(""); // Réinitialiser l'explication à chaque nouvelle question
+    setFeedback("");
+    setExplanation("");
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
 
     if (currentQuestionIndex < questions.length - 1) {
       showQuestion(currentQuestionIndex + 1);
     } else {
-      // Si c'est la dernière question, afficher le score
       showScore();
     }
   };
@@ -91,16 +85,16 @@ export default function App() {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', backgroundColor: '#282c34'}}>
-        <Box sx={{ width: '100vh', background: `url(${panneau}) center/cover no-repeat`,   }}>
-        <Box sx={{ height:50, width: '70%', marginTop: 18, marginLeft:19,}}>
-            <Typography variant="h3" gutterBottom>{t('MCQ_Question1_Question')}</Typography>
+    <Box sx={{ height: '150vh', display: 'flex', flexDirection: "column", alignItems: 'center', backgroundColor: '#282c34',}}>
+        <Box sx={{backgroundImage: `url(${panneau})`, backgroundSize: "cover", width: '100%', height: '100%'}}>
+            <Typography sx={{marginTop:22}} variant="h3" gutterBottom>{i18n.t('MCQ_Titre')}</Typography>
             <Typography variant="h4" gutterBottom>{questionText}</Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
+            <Box sx={{ justifyContent: 'space-between', }}>
                     <Box >
                     {choices.map((choice, index) => (
-                        <Button sx={{ height: 70, width:100, margin:2, padding:2}}
-                        variant="contained"
+                        <Button sx={{ height: 150, width:200, margin:2, padding:2}}
+                        variant="outlined"
+                        color="error"
                         key={index}
                         className={`btn ${selectedAnswer === index ? (choice.answer ? "correct" : "incorrect") : ""}`}
                         onClick={() => selectChoice(choice.answer, index)}
@@ -110,13 +104,15 @@ export default function App() {
                         {choice.text}
                         </Button>
                     ))}
-                    </Box>
             </Box>
-            {feedback && <p>{feedback}</p>} {/* Afficher le feedback */}
-            {explanation && <p>{explanation}</p>} {/* Afficher l'explication */}
-            { showNextButton && (
-            <Button onClick={handleNextButton}>Suivant</Button>
-            )}
+            <Box >
+                {feedback && <p>{feedback}</p>} {/* Afficher le feedback */}
+                {explanation && <p>{explanation}</p>} {/* Afficher l'explication */}
+                { showNextButton && (
+                <Button variant="contained" color="success" onClick={handleNextButton}>Suivant</Button>
+                )}
+            </Box>
+            
             </Box>
         
         </Box>
