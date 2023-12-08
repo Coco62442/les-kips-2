@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
 import { createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router-dom'
 import { Timer } from './components/Timer'
@@ -9,6 +8,8 @@ import About from './components/About'
 import Home from './components/Home'
 import KonamiComponent from './components/KonamiComponent'
 import NightmarishPage from './components/nightmare_ux/NightmarishPage'
+import MCQ from './components/MCQ/MCQ'
+import './index.css'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
   {
     path: '/ux',
     element: <NightmarishPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/MCQ',
+    element: <MCQ />,
     errorElement: <ErrorPage />,
   }
 ])
