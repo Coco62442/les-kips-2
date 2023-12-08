@@ -4,12 +4,20 @@ import Footer from './Footer'
 import ResponsiveAppBar from './Header'
 import { Container, Typography, Grid } from '@mui/material';
 import Section from './Section';
+import { useTimer } from './Timer';
+import Timer from './Timer';
 
 function Home() {
+
+  const {elapsedTime} = useTimer();
+
   return (
     <>
       <ResponsiveAppBar />
-      <Container maxWidth="xl" sx={{ mt: 4 }}>
+
+      <p>        timer: {elapsedTime} secondes</p>
+      <Timer>
+           <Container maxWidth="xl" sx={{ mt: 4 }}>
             <Section title="Noël Écologique">
               <Typography paragraph>
                 Conseils pour un Noël Écologique :
@@ -125,7 +133,8 @@ function Home() {
               </Typography>
 
             </Section>
-          </Container>      
+          </Container>   
+          </Timer>   
       <Footer />
     </>
     
