@@ -9,7 +9,7 @@ import { Outlet } from 'react-router-dom';
 
 import i18n from '../assets/translation';
 
-const pages = ['Home', 'Quiz', 'Ressources', 'About', 'Nightmarish UX'];
+const pages = ['Home', 'Quiz', 'About', 'Nightmarish UX'];
 
 const supportedLanguages = [
   { code: 'fr', name: 'Français' },
@@ -59,7 +59,7 @@ function ResponsiveAppBar() {
       if (page === 'Home') {
         return '/';
       } else if (page === 'Quiz') {
-        return '/quiz';
+        return '/mcq';
       } else if (page === 'About') {
         return '/about';
       } else if (page === 'Nightmarish UX') {

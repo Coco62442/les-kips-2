@@ -1,3 +1,47 @@
+@font-face {
+	font-family: "ChristmasgocDani";
+	src: local("ChristmasgocDani"), url('./assets/font/ChristmasgocDani.ttf') format('truetype');
+}
+@font-face {
+	font-family: "Home Christmas";
+	src: local("Home Christmas"), url('./assets/font/Home Christmas.otf') format('opentype');
+}
+@font-face {
+	font-family: "NOELAN";
+	src: local("NOELAN"), url('./assets/font/NOELAN_1.ttf') format('truetype');
+}
+@font-face {
+	font-family: "Playful Christmas";
+	src: local("Playful Christmas"), url('./assets/font/Playful Christmas-Personal Use.otf') format('opentype');
+}
+@font-face {
+	font-family: "PWHappyChristmas";
+	src: local("PWHappyChristmas"), url('./assets/font/PWHappyChristmas.ttf') format('truetype');
+}
+@font-face {
+	font-family: "Sweet Vusstain";
+	src: local("Sweet Vusstain"), url('./assets/font/Sweet Vusstain.ttf') format('truetype');
+}
+
+.font-face-gm {
+	font-family: "ChristmasgocDani";
+}
+.font-face-hc {
+	font-family: "Home Christmas";
+}
+.font-face-nl {
+	font-family: "NOELAN";
+}
+.font-face-pc {
+	font-family: "Playful Christmas";
+}
+.font-face-pw {
+	font-family: "PWHappyChristmas";
+}
+.font-face-sv {
+	font-family: "Sweet Vusstain";
+}
+
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 1.2rem;

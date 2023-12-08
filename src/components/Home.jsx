@@ -17,7 +17,7 @@ function Home() {
   const [isMouseOver, setIsMouseOver] = React.useState(false);
 
   useEffect(() => {
-    if (elapsedTime > 30) {
+    if (elapsedTime > 60) {
       setShowImage(true);
     }
   }, [elapsedTime]);
@@ -147,6 +147,21 @@ function Home() {
         {/* Condition pour afficher l'image après 270 secondes */}
         {showImage && (
           <ImageAppearOnHover />
+        )}
+
+        {elapsedTime > 270 && (
+          <Container maxWidth="xl" sx={{ mt: 4 }}>
+            <CardMedia
+              component="img"
+              style={{
+                width: '4%', // Ajustez la largeur selon vos besoins
+                height: 'auto',
+                objectFit: 'cover',
+              }}
+              alt="Charlie"
+              src="/charlie.png"
+            />
+          </Container>
         )}
 
         {/* Condition pour afficher l'alerte après 300 secondes */}

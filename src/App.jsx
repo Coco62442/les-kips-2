@@ -7,17 +7,17 @@ function App() {
 
     const action = () => {
         window.localStorage.getItem('compteur') ? null : window.localStorage.setItem('compteur', 0);
-
-        const compteur = parseInt(window.localStorage.getItem('compteur'));
-
+        console.log(window.localStorage.getItem('compteur'));
+        const compteur = parseInt(window.localStorage.getItem('compteur')) % 4;
+        console.log(compteur);
         if (compteur === 0) {
-            alert('Vous avez trouvé le code secret !');
+            window.location.href = '/ux'
         } else if (compteur === 1) {
-            alert('Vous avez trouvé le code secret une seconde fois !');
+            window.location.href = '/about?secret=2'
         } else if (compteur === 2) {
             alert('Vous avez trouvé le code secret une troisième fois !');
         } else {
-            alert('Vous avez trouvé le code secret ' + (compteur + 1) + ' fois !');
+            window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
         }
 
         window.localStorage.setItem('compteur', parseInt(window.localStorage.getItem('compteur')) + 1);

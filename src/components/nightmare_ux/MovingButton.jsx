@@ -5,8 +5,8 @@ const MovingButton = () => {
   const [position, setPosition] = useState({ x: 50, y: 50 });
 
   const handleClick = () => {
-    const randomX = Math.floor(Math.random() * window.innerWidth);
-    const randomY = Math.floor(Math.random() * window.innerHeight);
+    const randomX = Math.floor(Math.random() * window.innerWidth / 2);
+    const randomY = Math.floor(Math.random() * window.innerHeight / 2);
     setPosition({ x: randomX, y: randomY });
   };
 
@@ -17,7 +17,7 @@ const MovingButton = () => {
       style={{ position: 'absolute', top: position.y, left: position.x }}
       onClick={handleClick}
     >
-      Moving Button
+      Ne pas donner à l'association
     </Button>
   );
 };

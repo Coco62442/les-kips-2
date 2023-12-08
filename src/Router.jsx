@@ -8,6 +8,7 @@ import Home from './components/Home'
 import About from './components/About'
 import NightmarishPage from './components/nightmare_ux/NightmarishPage'
 import MCQ from './components/MCQ/MCQ'
+import PopupPage from './components/pageDon/PopupPage'
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
                 <Route path='/ux' element={<NightmarishPage />} />
                 <Route path='/quiz' element={<MCQ />} />
             </Route>
+            <Route path='/popup' element={<PopupPage />} />
         </Routes>
     </BrowserRouter>
   )
